@@ -307,7 +307,9 @@ abstract class AbstractPost implements WordpressWrapperInterface
     public function getFeaturedImageUrl($size = 'thumbnail')
     {
         if ($img = $this->getFeaturedImage()) {
-            return $img->getImageUrl($size);
+            if (get_class($img) == 'Tev\Post\Model\Attachment') {
+                return $img->getImageUrl($size);
+            }
         }
 
         return null;
